@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Advanced To-Do List">
     <title>Advanced To-Do List</title>
     <style>
         :root {
@@ -28,8 +32,12 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             padding: 20px;
             animation: backgroundShift 10s ease-in-out infinite alternate;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
         }
 
         @keyframes backgroundShift {
@@ -592,24 +600,286 @@
             color: var(--dark);
         }
 
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
             .container {
-                margin: 10px;
+                margin: 0;
                 border-radius: 16px;
+                max-width: 100%;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .input-section {
+                padding: 25px 20px;
             }
             
             .input-container {
                 flex-direction: column;
+                gap: 15px;
             }
             
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+            #taskInput {
+                width: 100%;
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+            
+            #addBtn {
+                width: 100%;
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .priority-selector {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .priority-btn {
+                flex: 1;
+                min-width: 100px;
+                padding: 10px 12px;
+                font-size: 12px;
+                text-align: center;
             }
             
             .filter-section {
                 flex-direction: column;
                 gap: 15px;
-                padding: 20px 30px;
+                padding: 20px;
+            }
+            
+            .filters {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .search-box {
+                width: 100%;
+                max-width: none;
+                font-size: 16px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.8em;
+            }
+            
+            .stat-label {
+                font-size: 0.8em;
+            }
+            
+            .progress-bar {
+                margin: 15px 20px;
+            }
+            
+            .todo-list {
+                padding: 0 20px 20px;
+                max-height: 400px;
+            }
+            
+            .todo-item {
+                padding: 15px;
+                margin-bottom: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .todo-item .checkbox {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                margin: 0;
+            }
+            
+            .todo-content {
+                width: 100%;
+                padding-right: 40px;
+            }
+            
+            .todo-text {
+                font-size: 15px;
+                line-height: 1.4;
+            }
+            
+            .todo-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 8px;
+            }
+            
+            .todo-actions {
+                width: 100%;
+                justify-content: flex-start;
+                opacity: 1;
+                gap: 10px;
+            }
+            
+            .action-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+                flex: 1;
+                text-align: center;
+            }
+            
+            .footer-actions {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .action-group {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .footer-btn {
+                padding: 12px 20px;
+                font-size: 13px;
+                min-width: 140px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+                padding: 25px 20px;
+            }
+            
+            .modal h3 {
+                font-size: 1.3em;
+            }
+            
+            .modal input {
+                padding: 16px;
+                font-size: 16px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .modal-btn {
+                width: 100%;
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            .empty-state {
+                padding: 40px 15px;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.2em;
+            }
+            
+            .empty-state p {
+                font-size: 1em;
+            }
+        }
+        
+        /* Very Small Screens */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 1.5em;
+            }
+            
+            .priority-selector {
+                flex-direction: column;
+            }
+            
+            .priority-btn {
+                width: 100%;
+            }
+            
+            .filters {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .action-group {
+                flex-direction: column;
+            }
+            
+            .footer-btn {
+                width: 100%;
+            }
+        }
+        
+        /* Touch Improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .todo-item:hover {
+                transform: none;
+            }
+            
+            .todo-actions {
+                opacity: 1;
+            }
+            
+            .action-btn {
+                padding: 12px 16px;
+                min-height: 44px;
+            }
+            
+            .checkbox {
+                min-width: 24px;
+                min-height: 24px;
+            }
+            
+            .footer-btn:hover {
+                transform: none;
+            }
+            
+            #addBtn:hover {
+                transform: none;
             }
         }
     </style>
@@ -736,126 +1006,6 @@
         const editInput = document.getElementById('editInput');
         const saveEditBtn = document.getElementById('saveEdit');
         const cancelEditBtn = document.getElementById('cancelEdit');
-
-        // Auto-save functionality
-        function autoSave() {
-            const dataToSave = {
-                tasks: tasks,
-                lastSaved: new Date().toISOString(),
-                version: '2.0'
-            };
-            
-            // Store in memory for this session
-            window.todoData = dataToSave;
-            
-            // Show save indicator
-            showNotification('💾 Auto-saved!', 'success');
-        }
-
-        function showNotification(message, type = 'info') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'};
-                color: white;
-                padding: 12px 20px;
-                border-radius: 8px;
-                font-weight: 500;
-                z-index: 2000;
-                animation: slideInRight 0.3s ease;
-                box-shadow: var(--shadow);
-            `;
-            notification.textContent = message;
-            
-            // Add slide animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideInRight {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            document.body.appendChild(notification);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.animation = 'slideInRight 0.3s ease reverse';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                    document.head.removeChild(style);
-                }, 300);
-            }, 3000);
-        }
-
-        function exportData() {
-            const dataToExport = {
-                tasks: tasks,
-                exportDate: new Date().toISOString(),
-                version: '2.0',
-                appName: 'Advanced To-Do List'
-            };
-            
-            const dataStr = JSON.stringify(dataToExport, null, 2);
-            const dataBlob = new Blob([dataStr], { type: 'application/json' });
-            
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(dataBlob);
-            link.download = `todo-backup-${new Date().toISOString().split('T')[0]}.json`;
-            link.click();
-            
-            showNotification('📥 Data exported successfully!', 'success');
-        }
-
-        function importData(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const importedData = JSON.parse(e.target.result);
-                    
-                    // Validate the data structure
-                    if (!importedData.tasks || !Array.isArray(importedData.tasks)) {
-                        throw new Error('Invalid file format');
-                    }
-                    
-                    // Confirm before importing
-                    const confirmMessage = `Import ${importedData.tasks.length} tasks? This will replace your current tasks.`;
-                    if (confirm(confirmMessage)) {
-                        // Update task ID counter to avoid conflicts
-                        const maxId = importedData.tasks.reduce((max, task) => 
-                            Math.max(max, task.id || 0), 0);
-                        taskIdCounter = maxId;
-                        
-                        // Import the tasks
-                        tasks = importedData.tasks.map(task => ({
-                            id: task.id || ++taskIdCounter,
-                            text: task.text || '',
-                            completed: Boolean(task.completed),
-                            priority: task.priority || 'medium',
-                            createdAt: task.createdAt || formatDate(new Date())
-                        }));
-                        
-                        renderTasks();
-                        autoSave();
-                        showNotification(`✅ Imported ${tasks.length} tasks successfully!`, 'success');
-                    }
-                } catch (error) {
-                    showNotification('❌ Error importing file. Please check the format.', 'error');
-                    console.error('Import error:', error);
-                }
-            };
-            
-            reader.readAsText(file);
-            // Clear the file input
-            event.target.value = '';
-        }
 
         function formatDate(date) {
             return new Intl.DateTimeFormat('en-US', {
@@ -1025,6 +1175,118 @@
             autoSave();
         }
 
+        function autoSave() {
+            const dataToSave = {
+                tasks: tasks,
+                lastSaved: new Date().toISOString(),
+                version: '2.0'
+            };
+            
+            window.todoData = dataToSave;
+            showNotification('💾 Auto-saved!', 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-weight: 500;
+                z-index: 2000;
+                animation: slideInRight 0.3s ease;
+                box-shadow: var(--shadow);
+            `;
+            notification.textContent = message;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                    if (document.head.contains(style)) {
+                        document.head.removeChild(style);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        function exportData() {
+            const dataToExport = {
+                tasks: tasks,
+                exportDate: new Date().toISOString(),
+                version: '2.0',
+                appName: 'Advanced To-Do List'
+            };
+            
+            const dataStr = JSON.stringify(dataToExport, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `todo-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showNotification('📥 Data exported successfully!', 'success');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    if (!importedData.tasks || !Array.isArray(importedData.tasks)) {
+                        throw new Error('Invalid file format');
+                    }
+                    
+                    const confirmMessage = `Import ${importedData.tasks.length} tasks? This will replace your current tasks.`;
+                    if (confirm(confirmMessage)) {
+                        const maxId = importedData.tasks.reduce((max, task) => 
+                            Math.max(max, task.id || 0), 0);
+                        taskIdCounter = maxId;
+                        
+                        tasks = importedData.tasks.map(task => ({
+                            id: task.id || ++taskIdCounter,
+                            text: task.text || '',
+                            completed: Boolean(task.completed),
+                            priority: task.priority || 'medium',
+                            createdAt: task.createdAt || formatDate(new Date())
+                        }));
+                        
+                        renderTasks();
+                        autoSave();
+                        showNotification(`✅ Imported ${tasks.length} tasks successfully!`, 'success');
+                    }
+                } catch (error) {
+                    showNotification('❌ Error importing file. Please check the format.', 'error');
+                    console.error('Import error:', error);
+                }
+            };
+            
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
         // Event Listeners
         addBtn.addEventListener('click', addTask);
         taskInput.addEventListener('keypress', (e) => {
@@ -1073,7 +1335,6 @@
         // Initialize
         taskInput.focus();
         
-        // Welcome message
         setTimeout(() => {
             showNotification('🎯 Welcome! Your tasks auto-save as you work.', 'info');
         }, 1000);
